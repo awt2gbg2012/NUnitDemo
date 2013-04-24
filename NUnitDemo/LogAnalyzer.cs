@@ -46,21 +46,4 @@ namespace NUnitDemo
     }
 
     public class DemoLogObject { }
-
-    public interface IFileExtensionManager
-    {
-        bool ValidateFileExtensions(string fileName);
-    }
-
-    public class FileExtensionManager : IFileExtensionManager
-    {
-        public bool ValidateFileExtensions(string fileName)
-        {
-            if (!fileName.ToLower().EndsWith(".slf"))
-            {
-                return false;
-            }
-            return true;
-        }
-    }
 }

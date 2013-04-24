@@ -12,38 +12,23 @@ namespace NUnitDemo.Tests
     public class LogAnalyzerTests
     {
         private LogAnalyzer analyzer;
+        private Mock mock;
 
         [SetUp]
         public void Setup()
         {
-            var mock = new Mock<IFileExtensionManager>();
+            mock = new Mock<IFileExtensionManager>();
             mock.Setup(m => m.ValidateFileExtensions(It.IsAny<string>())).Returns(true);
 
             analyzer = new LogAnalyzer(mock.Object);
         }
 
         [Test]
-        public void IsValidFileName_ValidNameLower_ReturnTrue()
+        public void IsValidFileExtension_Calls_OnlyOnceWithCorrectFileName()
         {
-            // Arrange
 
-            // Act
-            var actual = analyzer.IsValidFileName("testfile.slf");
+            mock.Verify(m => m.ValidateFileExtensions(It.IsAny<string>), Times.AtLeastOnce());
 
-            // Assert
-            Assert.That(actual);
-        }
-
-        [Test]
-        public void IsValidFileName_ValidNameUpper_ReturnTrue()
-        {
-            // Arrange
-
-            // Act
-            var actual = analyzer.IsValidFileName("testfile.SLF");
-
-            // Assert
-            Assert.That(actual);
         }
 
         [Test]
