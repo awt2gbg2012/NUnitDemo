@@ -8,9 +8,9 @@ namespace NUnitDemo
 {
     public class LogAnalyzer
     {
-        public LogAnalyzer()
+        public LogAnalyzer(IFileExtensionManager fileManager)
         {
-            var fileExtensionManager = new FileExtensionManager();
+            var fileExtensionManager = fileManager;
         }
 
         public bool IsValidFileName(string fileName)
@@ -50,5 +50,24 @@ namespace NUnitDemo
 
     public class DemoLogObject { }
 
-    public class FileExtensionManager { }
+    public interface IFileExtensionManager
+    {
+        bool ValidateFileExtensions();
+    }
+
+    public class FileExtensionManager : IFileExtensionManager
+    {
+        public bool ValidateFileExtensions()
+        {
+            return true;
+        }
+    }
+
+    public class FakeFileExtensionManager : IFileExtensionManager
+    {
+        public bool ValidateFileExtensions()
+        {
+            return true;
+        }
+    }
 }

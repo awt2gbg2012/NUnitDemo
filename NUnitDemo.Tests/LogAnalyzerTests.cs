@@ -15,7 +15,8 @@ namespace NUnitDemo.Tests
         [SetUp]
         public void Setup()
         {
-            analyzer = new LogAnalyzer();
+            var fileManager = new FakeFileExtensionManager();
+            analyzer = new LogAnalyzer(fileManager);
         }
 
         [Test]

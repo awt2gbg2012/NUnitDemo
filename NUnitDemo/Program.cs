@@ -10,6 +10,8 @@ namespace NUnitDemo
     {
         static void Main(string[] args)
         {
+            var fileManager = new FileExtensionManager();
+            var analyzer = new LogAnalyzer(fileManager);
         }
     }
 }
