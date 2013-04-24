@@ -11,9 +11,16 @@ namespace NUnitDemo.Tests
     public class LogAnalyzerTests
     {
         [Test]
-        public void first_test()
+        public void IsValidFileName_ValidName_ReturnTrue()
         {
-            Assert.That(2 + 2, Is.EqualTo(4));
+            // Arrange
+            var analyzer = new LogAnalyzer();
+
+            // Act
+            var actual = analyzer.IsValidFileName("testfile.SLF");
+
+            // Assert
+            Assert.That(actual);
         }
     }
 }
