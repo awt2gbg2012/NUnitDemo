@@ -10,11 +10,18 @@ namespace NUnitDemo.Tests
     [TestFixture]
     public class LogAnalyzerTests
     {
+        private LogAnalyzer analyzer;
+
+        [SetUp]
+        public void Setup()
+        {
+            analyzer = new LogAnalyzer();
+        }
+
         [Test]
         public void IsValidFileName_ValidNameLower_ReturnTrue()
         {
             // Arrange
-            var analyzer = new LogAnalyzer();
 
             // Act
             var actual = analyzer.IsValidFileName("testfile.slf");
@@ -27,7 +34,6 @@ namespace NUnitDemo.Tests
         public void IsValidFileName_ValidNameUpper_ReturnTrue()
         {
             // Arrange
-            var analyzer = new LogAnalyzer();
 
             // Act
             var actual = analyzer.IsValidFileName("testfile.SLF");
@@ -40,7 +46,6 @@ namespace NUnitDemo.Tests
         public void CurrentVersion_v10_returnsv10()
         {
             // Arrange
-            var analyzer = new LogAnalyzer();
             var expected = "v1.0";
 
             // Act
@@ -54,7 +59,6 @@ namespace NUnitDemo.Tests
         public void CheckConfigFile_NonExistingFile_ShouldThrow()
         {
             // Arrange
-            var analyzer = new LogAnalyzer();
 
             // Assert
             Assert.Throws(typeof(ArgumentException), analyzer.CheckConfigFile);
@@ -64,7 +68,6 @@ namespace NUnitDemo.Tests
         public void CheckConfigFile_EmptyStringFileName_ShouldThrow()
         {
             // Arrange
-            var analyzer = new LogAnalyzer();
             var configFile = "";
             var version = "v1.0";
 
@@ -78,7 +81,6 @@ namespace NUnitDemo.Tests
         public void GenerateLogObject_ValidLog_ShoulBeOfTypeLogObject()
         {
             // Arrange
-            var analyzer = new LogAnalyzer();
 
             // Act
             var actual = analyzer.GenerateLogObject();
@@ -88,16 +90,23 @@ namespace NUnitDemo.Tests
         }
 
         [Test]
+        [Category("NonEssential")]
         public void GenerateLogObject_ValidLog_NotNull()
         {
             // Arrange
-            var analyzer = new LogAnalyzer();
 
             // Act
             var actual = analyzer.GenerateLogObject();
 
             // Assert
             Assert.That(actual, Is.Not.Null);
+        }
+
+        [Test]
+        [Ignore]
+        public void UnfinishedTest()
+        {
+            throw new Exception("This method should be ignored");
         }
     }
 }
