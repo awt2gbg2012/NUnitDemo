@@ -8,6 +8,11 @@ namespace NUnitDemo
 {
     public class LogAnalyzer
     {
+        public LogAnalyzer()
+        {
+            var fileExtensionManager = new FileExtensionManager();
+        }
+
         public bool IsValidFileName(string fileName)
         {
             if (!fileName.ToLower().EndsWith(".slf"))
@@ -44,4 +49,6 @@ namespace NUnitDemo
     }
 
     public class DemoLogObject { }
+
+    public class FileExtensionManager { }
 }
