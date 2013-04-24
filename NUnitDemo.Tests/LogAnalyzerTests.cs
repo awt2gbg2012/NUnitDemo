@@ -12,7 +12,7 @@ namespace NUnitDemo.Tests
     public class LogAnalyzerTests
     {
         private LogAnalyzer analyzer;
-        private Mock mock;
+        private Mock<IFileExtensionManager> mock;
 
         [SetUp]
         public void Setup()
@@ -26,9 +26,13 @@ namespace NUnitDemo.Tests
         [Test]
         public void IsValidFileExtension_Calls_OnlyOnceWithCorrectFileName()
         {
+            // Arrange
 
-            mock.Verify(m => m.ValidateFileExtensions(It.IsAny<string>), Times.AtLeastOnce());
+            // Act
+            analyzer.IsValidFileName("testFile.slf");
 
+            // Assert
+            mock.Verify(m => m.ValidateFileExtensions(It.IsAny<string>()), Times.Exactly(1));
         }
 
         [Test]
