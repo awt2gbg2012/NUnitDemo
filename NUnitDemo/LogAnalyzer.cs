@@ -8,18 +8,15 @@ namespace NUnitDemo
 {
     public class LogAnalyzer
     {
+        IFileExtensionManager fileExtensionManager;
         public LogAnalyzer(IFileExtensionManager fileManager)
         {
-            var fileExtensionManager = fileManager;
+            fileExtensionManager = fileManager;
         }
 
         public bool IsValidFileName(string fileName)
         {
-            if (!fileName.ToLower().EndsWith(".slf"))
-            {
-                return false;
-            }
-            return true;
+            return fileExtensionManager.ValidateFileExtensions(fileName);          
         }
 
         public string CurrentVersion { get { return "v1.0"; } }
@@ -52,21 +49,17 @@ namespace NUnitDemo
 
     public interface IFileExtensionManager
     {
-        bool ValidateFileExtensions();
+        bool ValidateFileExtensions(string fileName);
     }
 
     public class FileExtensionManager : IFileExtensionManager
     {
-        public bool ValidateFileExtensions()
+        public bool ValidateFileExtensions(string fileName)
         {
-            return true;
-        }
-    }
-
-    public class FakeFileExtensionManager : IFileExtensionManager
-    {
-        public bool ValidateFileExtensions()
-        {
+            if (!fileName.ToLower().EndsWith(".slf"))
+            {
+                return false;
+            }
             return true;
         }
     }

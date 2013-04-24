@@ -17,6 +17,7 @@ namespace NUnitDemo.Tests
         public void Setup()
         {
             var mock = new Mock<IFileExtensionManager>();
+            mock.Setup(m => m.ValidateFileExtensions(It.IsAny<string>())).Returns(true);
 
             analyzer = new LogAnalyzer(mock.Object);
         }
