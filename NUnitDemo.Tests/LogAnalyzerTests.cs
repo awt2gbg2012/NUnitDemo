@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Moq;
 using NUnit.Framework;
 
 namespace NUnitDemo.Tests
@@ -15,8 +16,9 @@ namespace NUnitDemo.Tests
         [SetUp]
         public void Setup()
         {
-            var fileManager = new FakeFileExtensionManager();
-            analyzer = new LogAnalyzer(fileManager);
+            var mock = new Mock<IFileExtensionManager>();
+
+            analyzer = new LogAnalyzer(mock.Object);
         }
 
         [Test]
